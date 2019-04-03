@@ -12,9 +12,12 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
  */
 public class App 
 {
+	
+	private final static String PATH_STORAGE_FOLDER = "/Users/alessandrocimmino/Desktop/";
+	
     public static void main( String[] args ) throws Exception
     {
-    	String crawlStorageFolder = "/home/ebt/agiwvic/";
+    	String crawlStorageFolder = PATH_STORAGE_FOLDER;
         int numberOfCrawlers = 2;
 
         CrawlConfig config = new CrawlConfig();
@@ -29,7 +32,7 @@ public class App
         // For each crawl, you need to add some seed urls. These are the first
         // URLs that are fetched and then the crawler starts following links
         // which are found in these pages
-        //controller.addSeed("https://sites.google.com/site/roma3ia/");
+        controller.addSeed("https://sites.google.com/site/roma3ia/");
        // controller.addSeed("https://www.ebay.it");
     //	controller.addSeed("https://www.subito.it");
     	

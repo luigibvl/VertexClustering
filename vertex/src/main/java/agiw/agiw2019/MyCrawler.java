@@ -28,6 +28,7 @@ public class MyCrawler extends WebCrawler {
 	private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg"
 			+ "|png|mp3|mp4|zip|gz))$");
 
+	private final static String PATH_TAG_TXT = "/Users/alessandrocimmino/Desktop/tags.txt";
 	/**
 	 * This method receives two parameters. The first parameter is the page
 	 * in which we have discovered this new url and the second parameter is
@@ -68,7 +69,7 @@ public class MyCrawler extends WebCrawler {
 				System.out.println("Number of tags by getAllElements() method =" + document.getAllElements().size());
 				//    System.out.println("Number of tags by Collector.collect() method =" + Collector.collect(new Evaluator.AllElements(), document).size());
 				System.out.println("Number of tags by select(\"*\") method =" + document.select("div").size());
-				try (PrintWriter out = new PrintWriter(new FileWriter("/home/ebt/agiwvic/tags.txt",true)); PrintWriter link = new PrintWriter(new FileWriter("/home/ebt/agiwvic/links.txt",true))) {
+				try (PrintWriter out = new PrintWriter(new FileWriter(PATH_TAG_TXT,true)); PrintWriter link = new PrintWriter(new FileWriter(PATH_TAG_TXT,true))) {
 					
 				    Pattern p = Pattern.compile("(</?[a-z]+(\\s[a-z]+=\".*\")*>)");
 				    Matcher m = p.matcher(document.html());
