@@ -59,13 +59,19 @@ public class ShingleVector {
 		
 		//create 6/8 masks
 		for(int i=0;i<this.vector.length;i++){
-			for(int j=0;j<this.vector.length;j++){
+			for(int j=i+1;j<this.vector.length;j++){
+				
+				String [] vectorTemp=new String[8];
+				for(int k=0;k<8;k++) 
+					vectorTemp[k]=this.vector[k];
+				
 				MaskedShingleVector mask6 = new MaskedShingleVector();
-				mask6.setMasked_vector(this.vector);
+				mask6.setMasked_vector(vectorTemp);
 				mask6.getMasked_vector()[i] = "*";
 				mask6.getMasked_vector()[j] = "*";
 				this.masked_vectors.get("6/8").add(mask6);
 			}
+			
 		}
 	}
 	
@@ -74,7 +80,7 @@ public class ShingleVector {
 	public String toString() {
 		String value = "";
 		for(String i : this.vector) {
-			value =  value.concat(i)+"\n";
+			value =  value.concat(i);
 		}
 		return value;
 	}
