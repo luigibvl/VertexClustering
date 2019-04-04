@@ -1,6 +1,6 @@
 package hashing;
 
-public interface GetHashFunction {
+public interface HashFunctionInterface {
 	
 	public String getHash(String s);
 
