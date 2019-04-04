@@ -1,4 +1,4 @@
-package hashFunction;
+package hashing;
 
 public class Joaat extends HashFunction{
 	

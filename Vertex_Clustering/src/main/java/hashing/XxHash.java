@@ -1,4 +1,4 @@
-package hashFunction;
+package hashing;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

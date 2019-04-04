@@ -4,17 +4,16 @@ package clustering;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import hashFunction.Adler;
-import hashFunction.Crc32;
-import hashFunction.FactoryHashFunctions;
-import hashFunction.Fnv;
-import hashFunction.HashFunction;
-import hashFunction.Joaat;
-import hashFunction.Md5;
-import hashFunction.Sha256;
-import hashFunction.Sha3;
-import hashFunction.XxHash;
+import hashing.Adler;
+import hashing.Crc32;
+import hashing.FactoryHashFunctions;
+import hashing.Fnv;
+import hashing.HashFunction;
+import hashing.Joaat;
+import hashing.Md5;
+import hashing.Sha256;
+import hashing.Sha3;
+import hashing.XxHash;
 import shingle.Shingle;
 import shingle.ShingleSet;
 import shingle.ShingleVector;
@@ -34,17 +33,24 @@ public class PageClustering {
 
 		for(int i=0;i<lisHashFunctions.size();i++) {
 			HashFunction hashFunction=lisHashFunctions.get(i);
-			long min = Long.MAX_VALUE;
+			int max = Integer.MAX_VALUE;
+			String min = Integer.toString(max);
 			for(Shingle s : shingleSet.getShingle_set()) {
 				String input = s.concatTagSequence();
 				String output = hashFunction.getHash(input);
-				long decimal = Long.parseLong(output, 16);
-
-				if(decimal<min)
-					min=decimal;
+				
+				if(output.compareTo(min)<0)
+					min=output;
 			}
-			vector.getVector()[i] = min;
+			
+			int primo = Integer.parseInt(min.substring(0, min.length()/4), 16);
+			int secondo = Integer.parseInt(min.substring(min.length()/4, min.length()/2), 16);
+			int terzo = Integer.parseInt(min.substring(min.length()/2, min.length()*3/4), 16);
+			int quarto = Integer.parseInt(min.substring(min.length()*3/4, min.length()), 16);
+			
+			vector.getVector()[i] = Integer.toString(primo^secondo^terzo^quarto);
 		}
+		
 		return vector;
 	}
 }

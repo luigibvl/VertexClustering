@@ -1,4 +1,4 @@
-package hashFunction;
+package hashing;
 
 import java.util.ArrayList;
 import java.util.List;

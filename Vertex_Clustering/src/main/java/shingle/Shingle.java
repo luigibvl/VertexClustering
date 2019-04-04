@@ -14,7 +14,7 @@ public class Shingle {
 
 
 	public List<String> getTag_sequence() {
-		return tag_sequence;
+		return this.tag_sequence;
 	}
 
 	public void setTag_sequence(List<String> tag_sequence) {
@@ -23,14 +23,14 @@ public class Shingle {
 
 	public String concatTagSequence() {
 		String stringTag="";
-		for(String tag : tag_sequence) {
+		for(String tag : this.tag_sequence) {
 			stringTag= stringTag.concat(tag);
 		}
 		return stringTag;
 	}
 
 	public int getLength() {
-		return length;
+		return this.length;
 	}
 
 	public void setLength(int length) {

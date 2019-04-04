@@ -7,6 +7,7 @@ public class ShingleSet {
 
 	private List<Shingle> shingle_set;
 	
+	
 	public ShingleSet(List<String> page) {
 		this.shingle_set=createShingles(page);
 	} 

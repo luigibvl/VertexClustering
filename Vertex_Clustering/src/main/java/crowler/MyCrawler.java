@@ -26,6 +26,7 @@ import edu.uci.ics.crawler4j.url.WebURL;
 import shingle.Shingle;
 import shingle.ShingleSet;
 import shingle.ShingleVector;
+import tag.TagPagina;
 
 public class MyCrawler extends WebCrawler {
 	
@@ -88,7 +89,7 @@ public class MyCrawler extends WebCrawler {
 					String taggo=match.replaceAll("");
 					out.print(strutturaPagina);
 					TagPagina tagPagina=new TagPagina(strutturaPagina);					
-					ShingleSet shingleSet = new ShingleSet(tagPagina.getListaTag());
+					ShingleSet shingleSet = new ShingleSet(tagPagina.getLista());
 										
 					ShingleVector vector = PageClustering.createShingleVector(shingleSet);
 					System.out.println(vector.toString()+"vector");

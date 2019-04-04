@@ -1,4 +1,4 @@
-package crowler;
+package tag;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -21,7 +21,7 @@ public class TagPagina {
 		this.strutturaPagina=strutturaPagina;
 	}
 
-	public List<String> getListaTag(){
+	public List<String> getLista(){
 		
 		List<String> page = new ArrayList<>();
 		String[] tagSplittati = this.strutturaPagina.split("(?<=\\>)");

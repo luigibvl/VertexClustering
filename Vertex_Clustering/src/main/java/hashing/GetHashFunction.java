@@ -1,4 +1,4 @@
-package hashFunction;
+package hashing;
 
 public interface GetHashFunction {
 	
