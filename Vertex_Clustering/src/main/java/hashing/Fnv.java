@@ -1,6 +1,6 @@
 package hashing;
 
-public class Fnv extends HashFunction{
+public class Fnv implements HashFunctionInterface{
 	
 	
 	private static final int FNV_32_PRIME = 0x01000193;

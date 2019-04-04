@@ -3,7 +3,7 @@ package hashing;
 import org.bouncycastle.jcajce.provider.digest.SHA3;
 import org.bouncycastle.util.encoders.Hex;
 
-public class Sha3 extends HashFunction{
+public class Sha3 implements HashFunctionInterface{
 	
 	public Sha3() {}
 	

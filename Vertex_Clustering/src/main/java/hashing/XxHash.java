@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 import net.jpountz.xxhash.StreamingXXHash32;
 import net.jpountz.xxhash.XXHashFactory;
 
-public class XxHash extends HashFunction{
+public class XxHash implements HashFunctionInterface{
 
 	public XxHash(){}
 	

@@ -1,6 +1,6 @@
 package hashing;
 
-public class Joaat extends HashFunction{
+public class Joaat implements HashFunctionInterface{
 	
 	public Joaat() {}
 	

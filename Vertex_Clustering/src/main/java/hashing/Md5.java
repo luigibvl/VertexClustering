@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 import org.bouncycastle.util.encoders.Hex;
 
-public class Md5 extends HashFunction{
+public class Md5 implements HashFunctionInterface{
 	
 	public Md5() {}
 	

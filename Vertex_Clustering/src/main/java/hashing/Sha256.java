@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 import org.bouncycastle.util.encoders.Hex;
 
-public class Sha256 extends HashFunction{
+public class Sha256 implements HashFunctionInterface{
 	
 	public Sha256() {}
 	

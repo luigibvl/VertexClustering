@@ -3,7 +3,7 @@ package hashing;
 import java.util.zip.CRC32;
 import java.util.zip.Checksum;
 
-public class Crc32 extends HashFunction{
+public class Crc32 implements HashFunctionInterface{
 	
 	public Crc32() {}
 	

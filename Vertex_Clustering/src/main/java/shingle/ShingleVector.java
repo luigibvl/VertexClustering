@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import hashing.FactoryHashFunctions;
-import hashing.HashFunction;
+import hashing.HashFunctionInterface;
 
 
 public class ShingleVector {
@@ -19,8 +19,6 @@ public class ShingleVector {
 		this.masked_vectors.put("6/8", new ArrayList<MaskedShingleVector>());
 		this.masked_vectors.put("7/8", new ArrayList<MaskedShingleVector>());
 		this.masked_vectors.put("8/8", new ArrayList<MaskedShingleVector>());
-		
-		//createMasks();
 	}
 	
 	public String[] getVector() {
@@ -41,15 +39,14 @@ public class ShingleVector {
 	
 	public static void createShingleVector(ShingleSet shingleSet) {
 
-		//vector = new ShingleVector();
 
 		FactoryHashFunctions factory=new FactoryHashFunctions();
-		List<HashFunction> lisHashFunctions=new ArrayList<>();
+		List<HashFunctionInterface> lisHashFunctions=new ArrayList<>();
 		lisHashFunctions=factory.getFactory();
 
 		for(int i=0;i<lisHashFunctions.size();i++) {
 			
-			HashFunction hashFunction=lisHashFunctions.get(i);
+			HashFunctionInterface hashFunction=lisHashFunctions.get(i);
 			int max = Integer.MAX_VALUE;
 			String min = Integer.toString(max);
 			

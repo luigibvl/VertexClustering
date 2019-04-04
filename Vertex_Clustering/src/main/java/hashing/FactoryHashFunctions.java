@@ -5,14 +5,14 @@ import java.util.List;
 
 public class FactoryHashFunctions {
 	
-	private List<HashFunction> lisHashFunctions;
+	private List<HashFunctionInterface> lisHashFunctions;
 
 	
 	public FactoryHashFunctions() {
 		this.lisHashFunctions=new ArrayList<>();
 	}
 	
-	public List<HashFunction> getFactory() {
+	public List<HashFunctionInterface> getFactory() {
 		
 		this.lisHashFunctions.add(new Crc32());
 		this.lisHashFunctions.add(new Adler());
