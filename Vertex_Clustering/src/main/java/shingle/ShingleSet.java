@@ -9,18 +9,18 @@ public class ShingleSet {
 	
 	
 	public ShingleSet(List<String> page) {
-		this.shingle_set=createShingles(page);
+		this.createShingles(page);
 	} 
 	
 
-	public List<Shingle> createShingles(List<String> page) {
-		List<Shingle> shingle_set= new ArrayList<Shingle>(); 
+	public void createShingles(List<String> page) {
+		
+		this.shingle_set= new ArrayList<Shingle>(); 
 		for(int i=0; i<page.size()-10; i++) {
 			Shingle shingle = new Shingle(10);
 			shingle.setTag_sequence(page.subList(i, i+10));
-			shingle_set.add(shingle);
+			this.shingle_set.add(shingle);
 		}
-		return shingle_set;
 	}
 
 
@@ -32,6 +32,5 @@ public class ShingleSet {
 	public void setShingle_set(List<Shingle> shingle_set) {
 		this.shingle_set = shingle_set;
 	}
-	
 	
 }

@@ -1,4 +1,4 @@
-package crowler;
+package crawler;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -74,15 +74,12 @@ public class App{
 			String[] tags = tagSequence.split("(?<=\\>)");
 			page = Arrays.asList(tags);
 
-			//System.out.println(page);
 
-			ShingleSet shingle = new ShingleSet(page);
-			List<Shingle> shingles = shingle.createShingles(page);
-
-			ShingleVector vector = PageClustering.createShingleVector(shingle);
-			for(int i = 0 ; i< vector.getVector().length; i++) {
-				System.out.print(vector.getVector()[i]+ " ");
-			}
+			ShingleSet shingleSet = new ShingleSet(page);
+			shingleSet.createShingles(page);
+			ShingleVector vector = new ShingleVector();
+			vector.createShingleVector(shingleSet);
+			vector.createMasks();
 
 		} catch (IOException e) {
 			e.printStackTrace();

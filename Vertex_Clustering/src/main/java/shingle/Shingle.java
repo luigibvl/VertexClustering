@@ -35,4 +35,13 @@ public class Shingle {
 	public void setLength(int length) {
 		this.length = length;
 	}
+	
+	@Override
+	public String toString() {
+		String value = "";
+		for(String i : this.tag_sequence) {
+			value =  value.concat(i);
+		}
+		return value;
+	}
 }

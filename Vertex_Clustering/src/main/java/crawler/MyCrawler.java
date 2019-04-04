@@ -1,29 +1,23 @@
-package crowler;
+package crawler;
 
-import java.util.List;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.lang.model.element.Element;
-
-import org.apache.commons.codec.binary.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
 import clustering.PageClustering;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
-import shingle.Shingle;
 import shingle.ShingleSet;
 import shingle.ShingleVector;
 import tag.TagPagina;
@@ -88,11 +82,18 @@ public class MyCrawler extends WebCrawler {
 					Matcher match = patt.matcher(strutturaPagina);
 					String taggo=match.replaceAll("");
 					out.print(strutturaPagina);
-					TagPagina tagPagina=new TagPagina(strutturaPagina);					
-					ShingleSet shingleSet = new ShingleSet(tagPagina.getLista());
-										
-					ShingleVector vector = PageClustering.createShingleVector(shingleSet);
-					System.out.println(vector.toString()+"vector");
+					TagPagina tagPagina = new TagPagina(strutturaPagina);					
+					ShingleSet shingleSet = new ShingleSet(tagPagina.getLista());					
+					ShingleVector vector = new ShingleVector();
+					vector.createShingleVector(shingleSet);
+					
+					
+
+				
+					
+					
+					
+					
 					
 					
 
