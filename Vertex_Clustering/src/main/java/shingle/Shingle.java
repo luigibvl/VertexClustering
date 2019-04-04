@@ -12,7 +12,6 @@ public class Shingle {
 		this.length=length;
 	}
 
-
 	public List<String> getTag_sequence() {
 		return this.tag_sequence;
 	}

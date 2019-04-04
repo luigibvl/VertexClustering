@@ -32,9 +32,11 @@ public class PageClustering {
 		lisHashFunctions=factory.getFactory();
 
 		for(int i=0;i<lisHashFunctions.size();i++) {
+			
 			HashFunction hashFunction=lisHashFunctions.get(i);
 			int max = Integer.MAX_VALUE;
 			String min = Integer.toString(max);
+			
 			for(Shingle s : shingleSet.getShingle_set()) {
 				String input = s.concatTagSequence();
 				String output = hashFunction.getHash(input);

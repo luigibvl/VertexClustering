@@ -19,7 +19,6 @@ public class ShingleVector {
 		createMasks();
 	}
 	
-	
 	public String[] getVector() {
 		return this.vector;
 	}
@@ -29,7 +28,7 @@ public class ShingleVector {
 	}
 
 	public Map<String, List<MaskedShingleVector>> getMasked_vectors() {
-		return masked_vectors;
+		return this.masked_vectors;
 	}
 
 	public void setMasked_vectors(Map<String, List<MaskedShingleVector>> masked_vectors) {
@@ -42,16 +41,25 @@ public class ShingleVector {
 		mask8.setMasked_vector(this.vector);
 		this.masked_vectors.get("8/8").add(mask8);
 		
+		
 		//create 7/8 masks
-		for(int i=0;i<=this.vector.length;i++){
+		for(int i=0;i<this.vector.length;i++){
+			
+			String [] vectorTemp=new String[8];
+			for(int j=0;j<8;j++) 
+				vectorTemp[j]=this.vector[j];
+			
+			
 			MaskedShingleVector mask7 = new MaskedShingleVector();
-			mask7.setMasked_vector(this.vector);
+			mask7.setMasked_vector(vectorTemp);
 			mask7.getMasked_vector()[i] = "*";
+			
 			this.masked_vectors.get("7/8").add(mask7);
 		}
+		
 		//create 6/8 masks
-		for(int i=0;i<=this.vector.length;i++){
-			for(int j=0;j<=this.vector.length;i++){
+		for(int i=0;i<this.vector.length;i++){
+			for(int j=0;j<this.vector.length;j++){
 				MaskedShingleVector mask6 = new MaskedShingleVector();
 				mask6.setMasked_vector(this.vector);
 				mask6.getMasked_vector()[i] = "*";
@@ -61,6 +69,7 @@ public class ShingleVector {
 		}
 	}
 	
+
 	@Override
 	public String toString() {
 		String value = "";

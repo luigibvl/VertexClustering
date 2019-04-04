@@ -22,10 +22,10 @@ import shingle.ShingleVector;
  * Hello world!
  *
  */
-public class App 
-{
-	public static void main( String[] args ) throws Exception
-	{
+public class App{
+	
+	public static void main( String[] args ) throws Exception{
+		
 		String crawlStorageFolder = "/Users/luigibevilacqua/Desktop";
 		int numberOfCrawlers = 7;
 
@@ -58,7 +58,7 @@ public class App
 
 		try {
 			//br = new BufferedReader(new FileReader(FILENAME));
-			fr = new FileReader("/home/ebt/agiwvic/tags.txt");
+			fr = new FileReader("/Users/luigibevilacqua/Desktop/tags.txt");
 			br = new BufferedReader(fr);
 
 			String sCurrentLine;
@@ -96,6 +96,5 @@ public class App
 				ex.printStackTrace();
 			}
 		}
-
 	}
 }

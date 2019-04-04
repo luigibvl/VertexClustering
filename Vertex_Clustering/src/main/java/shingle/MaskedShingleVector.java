@@ -16,5 +16,14 @@ public class MaskedShingleVector {
 		this.masked_vector = masked_vector;
 	}
 	
+	@Override
+	public String toString() {
+		String value = "";
+		for(String i : this.masked_vector) {
+			value =  value.concat(i)+"\n";
+		}
+		return value;
+	}
+	
 }
 

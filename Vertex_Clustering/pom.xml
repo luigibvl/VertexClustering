@@ -1,64 +1,65 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>Vertex_Clustering</groupId>
-  <artifactId>Vertex_Clustering</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+	<groupId>Vertex_Clustering</groupId>
+	<artifactId>Vertex_Clustering</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
-  <name>Vertex_Clustering</name>
-  <url>http://maven.apache.org</url>
+	<name>Vertex_Clustering</name>
+	<url>http://maven.apache.org</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-    	<groupId>org.jfree</groupId>
-    	<artifactId>jfreechart</artifactId>
-    	<version>1.0.19</version>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/net.jpountz.lz4/lz4 -->
-<dependency>
-    <groupId>net.jpountz.lz4</groupId>
-    <artifactId>lz4</artifactId>
-    <version>1.3.0</version>
-</dependency><!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
-<dependency>
-    <groupId>org.bouncycastle</groupId>
-    <artifactId>bcprov-jdk15on</artifactId>
-    <version>1.60</version>
-    <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
-</dependency>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jfree</groupId>
+			<artifactId>jfreechart</artifactId>
+			<version>1.0.19</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.jpountz.lz4/lz4 -->
+		<dependency>
+			<groupId>net.jpountz.lz4</groupId>
+			<artifactId>lz4</artifactId>
+			<version>1.3.0</version>
+		</dependency><!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
+			<version>1.60</version>
+			<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+		</dependency>
 
-<dependency>
-    <groupId>commons-codec</groupId>
-    <artifactId>commons-codec</artifactId>
-    <version>1.9</version>
-</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.9</version>
+		</dependency>
 
-<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
-<dependency>
-    <groupId>org.jsoup</groupId>
-    <artifactId>jsoup</artifactId>
-    <version>1.11.3</version>
-</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.11.3</version>
+		</dependency>
 
-<!-- https://mvnrepository.com/artifact/edu.uci.ics/crawler4j -->
-<dependency>
-    <groupId>edu.uci.ics</groupId>
-    <artifactId>crawler4j</artifactId>
-    <version>3.1</version>
-</dependency>
-<dependency>
+		<!-- https://mvnrepository.com/artifact/edu.uci.ics/crawler4j -->
+		<dependency>
+			<groupId>edu.uci.ics</groupId>
+			<artifactId>crawler4j</artifactId>
+			<version>3.1</version>
+		</dependency>
+		<dependency>
 			<groupId>edu.uci.ics</groupId>
 			<artifactId>crawler4j</artifactId>
 			<version>4.4.0</version>
@@ -75,9 +76,9 @@
 		</dependency>
 
 
-  </dependencies>
-  <!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
-	
+	</dependencies>
+	<!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
 
-  
+
+
 </project>
