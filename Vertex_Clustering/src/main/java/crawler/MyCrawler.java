@@ -44,8 +44,9 @@ public class MyCrawler extends WebCrawler {
 	@Override
 	public boolean shouldVisit(Page referringPage, WebURL url) {
 		String href = url.getURL().toLowerCase();
-		return !FILTERS.matcher(href).matches()
-				&& href.startsWith("https://www.ics.uci.edu/");
+		return false;
+//		return !FILTERS.matcher(href).matches()
+//				&& href.startsWith("https://www.ics.uci.edu/");
 	}
 
 	/**
@@ -63,8 +64,10 @@ public class MyCrawler extends WebCrawler {
 			try {
 				Document document = Jsoup.connect(url).get();
 				PrintWriter out = new PrintWriter(
-						new FileWriter("/Users/luigibevilacqua/Desktop/test/tags.txt",true));
-				Controller controller=new Controller(document,out);
+						new FileWriter("/test/"+url.replaceAll("/|:", "_")+".txt",true));
+				Controller c = new Controller(document);
+				out.print(c.parseHtml());
+				System.out.println(c.parseHtml());
 				
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block

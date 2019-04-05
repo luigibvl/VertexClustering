@@ -17,24 +17,26 @@ public class Controller {
 	private String strutturaPagina;
 
 
-	public Controller(Document document,PrintWriter out) {
+	public Controller(Document document) {
 		this.document=document;
-		this.init(out);
+		
 	}
 
 
-	public void init(PrintWriter out) {
-		this.getPaginaStrutturata(out);
-		this.getShingleSet(this.strutturaPagina);
-	}
+//	public void init(PrintWriter out) {
+//		this.getPaginaStrutturata(out);
+//		//this.getShingleSet(this.strutturaPagina);
+//	}
 
 
 	/**
 	 * 
 	 * @param out utile solo per ora credo (solo il parametro)
 	 */
-	public void getPaginaStrutturata(PrintWriter out) {
+	public String parseHtml() {
 
+		System.out.println(this.document.html()); //OK
+		
 		Pattern p = Pattern.compile("(</?[a-z]+(\\s[a-z]+=\".*\")*>)");
 		Matcher m = p.matcher(this.document.html());
 
@@ -50,7 +52,7 @@ public class Controller {
 		Pattern patt = Pattern.compile("(<script.*</script>)|(<head.*</head>)");
 		Matcher match = patt.matcher(this.strutturaPagina);
 		String taggo=match.replaceAll("");
-		out.print(this.strutturaPagina);
+		return taggo;
 	}
 
 
@@ -77,6 +79,7 @@ public class Controller {
 			for (MaskedShingleVector s : valueList) {
 				System.out.print(s.toString() + " ");
 			}
+			System.out.println();
 		}
 	}
 }

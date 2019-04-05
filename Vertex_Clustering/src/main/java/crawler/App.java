@@ -11,6 +11,7 @@ import clustering.PageClustering;
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
+import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 import shingle.Shingle;
@@ -28,7 +29,7 @@ public class App{
 	
 	public static void main( String[] args ) throws Exception{
 		
-		String crawlStorageFolder = "/Users/luigibevilacqua/Desktop/test";
+		String crawlStorageFolder = "/test";
 		int numberOfCrawlers = 7;
 
 		CrawlConfig config = new CrawlConfig();
@@ -52,6 +53,11 @@ public class App{
 		// Start the crawl. This is a blocking operation, meaning that your code
 		// will reach the line after this only when crawling is finished.
 		controller.start(factory, numberOfCrawlers);
-
+		
+		
+		
+		
+		
+		
 	}
 }

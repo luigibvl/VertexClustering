@@ -23,9 +23,10 @@ public class PageClustering {
 			//creazione vettore v
 			List<Tag> p_taglist = p.getListaTag();
 			ShingleSet shingleSet = new ShingleSet(p_taglist);
-			ShingleVector v = new ShingleVector();
+			ShingleVector v;
 			shingleSet.createShingleVector();
-			shingleSet.getShingleVector().createMasks();
+			v = shingleSet.getShingleVector();
+			v.createMasks();
 			//--------------------
 			
 			System.out.println(v.getMasked_vectors().toString());
@@ -50,6 +51,12 @@ public class PageClustering {
 		
 		List<MaskedShingleVector> all88MV = table.getAll88MaskedVector();
 		
-		System.out.println(all88MV.toString());
+		System.out.println(all88MV.toString()); //NON OK
+		
+		for (MaskedShingleVector mv : all88MV){
+			
+		}
+		
+		
 	}
 }
