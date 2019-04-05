@@ -1,24 +1,36 @@
-package shingle;
+package tag;
+
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import hashing.FactoryHashFunctions;
 import hashing.HashFunctionInterface;
-import tag.Tag;
+import shingle.Shingle;
+import shingle.ShingleVector;
 
-public class ShingleSet {
-	
-	
-	private List<Shingle> shingle_set;
+
+public class Pagina {
+
 	private ShingleVector shinglevector;
+	private String strutturaPagina;
+	private List<Shingle> shingle_set;
 	
-	
-	public ShingleSet(List<Tag> page) {
-		this.createShingles(page);
-	} 
-	
+	public Pagina(String parsedHtml) {
+		this.strutturaPagina=parsedHtml;
+	}
 
+	public List<Tag> getListaTag(){
+		List<Tag> page = new ArrayList<>();
+		String[] tagSplittati = this.strutturaPagina.split("(?<=\\>)");
+		for (int i=0;i<tagSplittati.length;i++){
+			Tag tag = new Tag(tagSplittati[i]);
+			page.add(tag);
+		}
+		return page;
+	}
+	
 	public void createShingles(List<Tag> page) {
 		
 		this.shingle_set= new ArrayList<Shingle>(); 
@@ -78,4 +90,10 @@ public class ShingleSet {
 		this.shinglevector.setVector(vector);
 	}
 	
+	@Override
+	public String toString(){
+		return shinglevector.toString();
+	}
+	
 }
+

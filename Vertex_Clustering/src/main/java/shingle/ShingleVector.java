@@ -97,4 +97,9 @@ public class ShingleVector {
 		return value;
 	}
 
+	public void copy(MaskedShingleVector mv) {
+		if(!mv.containsWildCard())
+			this.vector=  mv.getMasked_vector().clone();
+	}
+
 }

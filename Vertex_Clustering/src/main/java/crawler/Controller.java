@@ -7,8 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jsoup.nodes.Document;
 import shingle.MaskedShingleVector;
-import shingle.ShingleSet;
-import tag.TagPagina;
+import tag.Pagina;
 
 
 public class Controller {
@@ -43,13 +42,14 @@ public class Controller {
 		this.strutturaPagina="";
 		while(m.find()) {
 			String tag = m.group(0);
-			Pattern pattern = Pattern.compile("(\\s[a-z]+=\"(.*)\")+");
+			Pattern pattern = Pattern.compile("(\\s[a-z|:]+=\"(.*)\")+");
 			Matcher matcher = pattern.matcher(tag);
 			String noAttribute = matcher.replaceAll("");
 			this.strutturaPagina=this.strutturaPagina.concat(noAttribute);
 		}
+		System.out.println(this.strutturaPagina);
 
-		Pattern patt = Pattern.compile("(<script.*</script>)|(<head.*</head>)");
+		Pattern patt = Pattern.compile("(<script.*?</script>)|(<head.*</head>)");
 		Matcher match = patt.matcher(this.strutturaPagina);
 		String taggo=match.replaceAll("");
 		return taggo;
@@ -63,14 +63,14 @@ public class Controller {
 
 	public void getShingleSet(String strutturaPagina) {
 
-		TagPagina tagPagina = new TagPagina(strutturaPagina);
-		ShingleSet shingleSet = new ShingleSet(tagPagina.getListaTag());
-		shingleSet.createShingleVector();
-		shingleSet.getShingleVector().createMasks();
+		Pagina tagPagina = new Pagina(strutturaPagina);
+		tagPagina.getListaTag();
+		tagPagina.createShingleVector();
+		tagPagina.getShingleVector().createMasks();
 
 		//serve per stampare i masked per delle prove
 		for (Map.Entry<String, List<MaskedShingleVector>> me : 
-			shingleSet.getShingleVector().getMasked_vectors().entrySet()) {
+			tagPagina.getShingleVector().getMasked_vectors().entrySet()) {
 
 			String key = me.getKey();
 			List<MaskedShingleVector> valueList = me.getValue();

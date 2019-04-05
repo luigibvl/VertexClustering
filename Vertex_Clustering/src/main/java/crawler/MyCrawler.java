@@ -18,9 +18,8 @@ import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
-import shingle.ShingleSet;
 import shingle.ShingleVector;
-import tag.TagPagina;
+import tag.Pagina;
 
 public class MyCrawler extends WebCrawler {
 
@@ -64,10 +63,10 @@ public class MyCrawler extends WebCrawler {
 			try {
 				Document document = Jsoup.connect(url).get();
 				PrintWriter out = new PrintWriter(
-						new FileWriter("/test/"+url.replaceAll("/|:", "_")+".txt",true));
+						new FileWriter("/Users/alessandrocimmino/Desktop/test/"+url.replaceAll("/|:", "_")+".txt",true));
 				Controller c = new Controller(document);
 				out.print(c.parseHtml());
-				System.out.println(c.parseHtml());
+				out.close();
 				
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block

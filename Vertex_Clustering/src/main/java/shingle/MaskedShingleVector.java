@@ -28,6 +28,10 @@ public class MaskedShingleVector {
 	public void incrementCount(){
 		this.count += 1;
 	}
+	
+	public void decrementCount(int i){
+		this.count -= i;
+	}
 
 	public boolean cover(ShingleVector vector){
 		for (int i = 0; i<this.masked_vector.length; i++){
@@ -38,7 +42,7 @@ public class MaskedShingleVector {
 	}
 
 	public boolean containsWildCard(){
-		for (int i=1; i<this.masked_vector.length; i++){
+		for (int i=0; i<this.masked_vector.length; i++){
 			if(this.masked_vector[i].equals("*"))
 				return true;
 		}
@@ -53,6 +57,16 @@ public class MaskedShingleVector {
 		}
 		
 		return result + "]";
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		MaskedShingleVector mv = (MaskedShingleVector)o;
+		for(int i=0;i<mv.masked_vector.length;i++){
+			if(this.masked_vector[i]!=mv.masked_vector[i])
+				return false;
+		}
+		return true;
 	}
 }
 

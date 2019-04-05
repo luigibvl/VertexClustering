@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import shingle.MaskedShingleVector;
@@ -46,8 +47,21 @@ public class HashTable {
 		this.table_mvectors = new ArrayList<MaskedShingleVector>();
 	}
 	
-	public void order_by_count(){ //increasing order
+	public void sort_by_count_increasing(){ 
 		this.table_mvectors.sort(Comparator.comparingInt(MaskedShingleVector::getCount));
+	}
+	
+	
+	public List<MaskedShingleVector> getTable_mvectors() {
+		return table_mvectors;
+	}
+
+	public void setTable_mvectors(List<MaskedShingleVector> table_mvectors) {
+		this.table_mvectors = table_mvectors;
+	}
+
+	public void sort_by_count_decreasing(){ 
+		this.table_mvectors.sort(Comparator.comparingInt(MaskedShingleVector::getCount).reversed());
 	}
 	
 	public void order_by_mask(){
@@ -81,9 +95,11 @@ public class HashTable {
 	}
 	
 	public void deleteAllUnderTreshold(int treshold){
-		for (MaskedShingleVector mv : this.table_mvectors)
+		for(Iterator<MaskedShingleVector> iterator = this.table_mvectors.iterator(); iterator.hasNext();){
+			MaskedShingleVector mv = iterator.next();
 			if(mv.getCount()<treshold)
-				this.delete(mv);
+				iterator.remove();
+		}
 	}
 	
 	@Override
