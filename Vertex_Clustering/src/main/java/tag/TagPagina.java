@@ -15,7 +15,7 @@ public class TagPagina {
 		this.strutturaPagina=strutturaPagina;
 	}
 
-	public List<Tag> getLista(){
+	public List<Tag> getListaTag(){
 		List<Tag> page = new ArrayList<>();
 		String[] tagSplittati = this.strutturaPagina.split("(?<=\\>)");
 		for (int i=0;i<tagSplittati.length;i++){

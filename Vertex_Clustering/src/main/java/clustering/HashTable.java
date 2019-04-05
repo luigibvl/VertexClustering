@@ -34,7 +34,7 @@ public class HashTable {
 //	
 //	public void increment_count(MaskedShingleVector masked_vector){
 //		//non riesco a trovare un modo per cercare nella mappa il masked_vector del parametro
-//		//bisognerebbe scorrere tutte le chiavi della mappa
+//		//bisognerebbe scorrere tutte le chiavi della mappa e per ogni chiave cercare dentro la lista associata
 //		//lungo e brutto
 //	}
 	
@@ -46,8 +46,8 @@ public class HashTable {
 		this.table_mvectors = new ArrayList<MaskedShingleVector>();
 	}
 	
-	public void order_by_count(){
-		this.table_mvectors.sort(Comparator.comparingInt(MaskedShingleVector::getCount).reversed());
+	public void order_by_count(){ //increasing order
+		this.table_mvectors.sort(Comparator.comparingInt(MaskedShingleVector::getCount));
 	}
 	
 	public void order_by_mask(){
@@ -60,7 +60,6 @@ public class HashTable {
 	}
 	
 	public boolean insert(MaskedShingleVector mv){
-		//mv.setCount(1);
 		return this.table_mvectors.add(mv);
 	}
 	
@@ -85,5 +84,14 @@ public class HashTable {
 		for (MaskedShingleVector mv : this.table_mvectors)
 			if(mv.getCount()<treshold)
 				this.delete(mv);
+	}
+	
+	@Override
+	public String toString(){
+		String result="";
+		for (MaskedShingleVector el : this.table_mvectors){
+			result += el.toString() + "\n";
+		}
+		return result;
 	}
 }

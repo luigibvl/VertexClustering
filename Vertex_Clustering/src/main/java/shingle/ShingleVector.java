@@ -14,7 +14,7 @@ import hashing.HashFunctionInterface;
 
 public class ShingleVector {
 
-	private static String[] vector = new String[8];
+	private String[] vector;
 	private Map<String,List<MaskedShingleVector>> masked_vectors;
 
 	public ShingleVector() {
@@ -22,8 +22,7 @@ public class ShingleVector {
 		this.masked_vectors.put("6/8", new ArrayList<MaskedShingleVector>());
 		this.masked_vectors.put("7/8", new ArrayList<MaskedShingleVector>());
 		this.masked_vectors.put("8/8", new ArrayList<MaskedShingleVector>());
-
-		//createMasks();
+		this.vector = new String[8];
 	}
 
 	public String[] getVector() {
@@ -48,37 +47,6 @@ public class ShingleVector {
 		        .collect(Collectors.toList());
 	}
 
-	public static void createShingleVector(ShingleSet shingleSet) {
-
-
-		FactoryHashFunctions factory=new FactoryHashFunctions();
-		List<HashFunctionInterface> lisHashFunctions=new ArrayList<>();
-		lisHashFunctions=factory.getFactory();
-
-		for(int i=0;i<lisHashFunctions.size();i++) {
-			
-			HashFunctionInterface hashFunction=lisHashFunctions.get(i);
-
-			int max = Integer.MAX_VALUE;
-			String min = Integer.toString(max);
-
-			for(Shingle s : shingleSet.getShingle_set()) {
-				String input = s.concatTagSequence();
-				String output = hashFunction.getHash(input);
-
-				if(output.compareTo(min)<0)
-					min=output;
-			}
-
-			int primo = Integer.parseInt(min.substring(0, min.length()/4), 16);
-			int secondo = Integer.parseInt(min.substring(min.length()/4, min.length()/2), 16);
-			int terzo = Integer.parseInt(min.substring(min.length()/2, min.length()*3/4), 16);
-			int quarto = Integer.parseInt(min.substring(min.length()*3/4, min.length()), 16);
-
-			vector[i] = Integer.toString(primo^secondo^terzo^quarto);
-		}
-
-	}
 
 	public void createMasks(){
 		//create 8/8 masks

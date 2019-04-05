@@ -28,7 +28,7 @@ public class App{
 	
 	public static void main( String[] args ) throws Exception{
 		
-		String crawlStorageFolder = "/test";
+		String crawlStorageFolder = "/Users/luigibevilacqua/Desktop/test";
 		int numberOfCrawlers = 7;
 
 		CrawlConfig config = new CrawlConfig();
@@ -53,50 +53,5 @@ public class App{
 		// will reach the line after this only when crawling is finished.
 		controller.start(factory, numberOfCrawlers);
 
-
-
-		BufferedReader br = null;
-		FileReader fr = null;
-
-		try {
-			//br = new BufferedReader(new FileReader(FILENAME));
-			fr = new FileReader("/test/tags.txt");
-			br = new BufferedReader(fr);
-
-			String sCurrentLine;
-			String tagSequence="";
-			while ((sCurrentLine = br.readLine()) != null) {
-				tagSequence = tagSequence.concat(sCurrentLine);
-				//System.out.println(sCurrentLine);
-			}
-			
-			TagPagina pagina_intera = new TagPagina(tagSequence);
-			
-//			List<Tag> page_as_taglist = pagina_intera.getLista();
-//
-//			ShingleSet shingleSet = new ShingleSet(page_as_taglist);
-//			//Non serve perché è già chiamato dal costruttore di ShingleSet
-//			//shingleSet.createShingles(page_as_taglist);
-//			ShingleVector vector = new ShingleVector();
-//			vector.createShingleVector(shingleSet);
-//			vector.createMasks();
-//			
-//			System.out.println(vector.getMasked_vectors().toString());
-			
-			PageClustering pc = new PageClustering();
-			pc.algorithm(pagina_intera);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (br != null)
-					br.close();
-				if (fr != null)
-					fr.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-		}
 	}
 }

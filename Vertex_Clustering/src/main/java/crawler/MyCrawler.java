@@ -23,7 +23,7 @@ import shingle.ShingleVector;
 import tag.TagPagina;
 
 public class MyCrawler extends WebCrawler {
-	
+
 
 	private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg"
 			+ "|png|mp3|mp4|zip|gz))$");
@@ -59,46 +59,20 @@ public class MyCrawler extends WebCrawler {
 
 		if (page.getParseData() instanceof HtmlParseData) {
 			HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
-		
+
 			try {
 				Document document = Jsoup.connect(url).get();
+				PrintWriter out = new PrintWriter(
+						new FileWriter("/Users/luigibevilacqua/Desktop/test/tags.txt",true));
+				Controller controller=new Controller(document,out);
 				
-				try (PrintWriter out = new PrintWriter(
-						new FileWriter("/test/tags.txt",true))) {
-
-					Pattern p = Pattern.compile("(</?[a-z]+(\\s[a-z]+=\".*\")*>)");
-					Matcher m = p.matcher(document.html());
-					String strutturaPagina="";
-					while(m.find()) {
-						String tag = m.group(0);
-						Pattern pattern = Pattern.compile("(\\s[a-z]+=\"(.*)\")+");
-						Matcher matcher = pattern.matcher(tag);
-						String noatt = matcher.replaceAll("");
-						strutturaPagina=strutturaPagina.concat(noatt);
-					}
-					
-					
-					Pattern patt = Pattern.compile("(<script.*</script>)|(<head.*</head>)");
-					Matcher match = patt.matcher(strutturaPagina);
-					String taggo=match.replaceAll("");
-					out.print(strutturaPagina);
-					TagPagina tagPagina = new TagPagina(strutturaPagina);					
-					ShingleSet shingleSet = new ShingleSet(tagPagina.getLista());					
-					ShingleVector vector = new ShingleVector();
-					vector.createShingleVector(shingleSet);
-					
-
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-			catch (IOException e) {
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
+
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 		}
 	}
