@@ -15,11 +15,13 @@ public class TagPagina {
 		this.strutturaPagina=strutturaPagina;
 	}
 
-	public List<String> getLista(){
-		
-		List<String> page = new ArrayList<>();
+	public List<Tag> getLista(){
+		List<Tag> page = new ArrayList<>();
 		String[] tagSplittati = this.strutturaPagina.split("(?<=\\>)");
-		page = Arrays.asList(tagSplittati);
+		for (int i=0;i<tagSplittati.length;i++){
+			Tag tag = new Tag(tagSplittati[i]);
+			page.add(tag);
+		}
 		return page;
 	}
 	

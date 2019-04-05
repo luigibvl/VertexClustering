@@ -16,6 +16,8 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 import shingle.Shingle;
 import shingle.ShingleSet;
 import shingle.ShingleVector;
+import tag.Tag;
+import tag.TagPagina;
 
 
 /**
@@ -26,7 +28,7 @@ public class App{
 	
 	public static void main( String[] args ) throws Exception{
 		
-		String crawlStorageFolder = "/Users/luigibevilacqua/Desktop";
+		String crawlStorageFolder = "/test";
 		int numberOfCrawlers = 7;
 
 		CrawlConfig config = new CrawlConfig();
@@ -58,28 +60,31 @@ public class App{
 
 		try {
 			//br = new BufferedReader(new FileReader(FILENAME));
-			fr = new FileReader("/Users/luigibevilacqua/Desktop/tags.txt");
+			fr = new FileReader("/test/tags.txt");
 			br = new BufferedReader(fr);
 
 			String sCurrentLine;
 			String tagSequence="";
-
 			while ((sCurrentLine = br.readLine()) != null) {
 				tagSequence = tagSequence.concat(sCurrentLine);
 				//System.out.println(sCurrentLine);
 			}
-
-			List<String> page = new ArrayList<>();
-
-			String[] tags = tagSequence.split("(?<=\\>)");
-			page = Arrays.asList(tags);
-
-
-			ShingleSet shingleSet = new ShingleSet(page);
-			shingleSet.createShingles(page);
-			ShingleVector vector = new ShingleVector();
-			vector.createShingleVector(shingleSet);
-			vector.createMasks();
+			
+			TagPagina pagina_intera = new TagPagina(tagSequence);
+			
+//			List<Tag> page_as_taglist = pagina_intera.getLista();
+//
+//			ShingleSet shingleSet = new ShingleSet(page_as_taglist);
+//			//Non serve perché è già chiamato dal costruttore di ShingleSet
+//			//shingleSet.createShingles(page_as_taglist);
+//			ShingleVector vector = new ShingleVector();
+//			vector.createShingleVector(shingleSet);
+//			vector.createMasks();
+//			
+//			System.out.println(vector.getMasked_vectors().toString());
+			
+			PageClustering pc = new PageClustering();
+			pc.algorithm(pagina_intera);
 
 		} catch (IOException e) {
 			e.printStackTrace();

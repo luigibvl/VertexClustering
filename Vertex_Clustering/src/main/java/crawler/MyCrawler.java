@@ -64,7 +64,7 @@ public class MyCrawler extends WebCrawler {
 				Document document = Jsoup.connect(url).get();
 				
 				try (PrintWriter out = new PrintWriter(
-						new FileWriter("/Users/luigibevilacqua/Desktop/tags.txt",true))) {
+						new FileWriter("/test/tags.txt",true))) {
 
 					Pattern p = Pattern.compile("(</?[a-z]+(\\s[a-z]+=\".*\")*>)");
 					Matcher m = p.matcher(document.html());
@@ -86,15 +86,6 @@ public class MyCrawler extends WebCrawler {
 					ShingleSet shingleSet = new ShingleSet(tagPagina.getLista());					
 					ShingleVector vector = new ShingleVector();
 					vector.createShingleVector(shingleSet);
-					
-					
-
-				
-					
-					
-					
-					
-					
 					
 
 				} catch (FileNotFoundException e) {
