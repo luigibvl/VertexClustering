@@ -3,17 +3,19 @@ package shingle;
 import java.util.ArrayList;
 import java.util.List;
 
+import tag.Tag;
+
 public class ShingleSet {
 
 	private List<Shingle> shingle_set;
 	
 	
-	public ShingleSet(List<String> page) {
+	public ShingleSet(List<Tag> page) {
 		this.createShingles(page);
 	} 
 	
 
-	public void createShingles(List<String> page) {
+	public void createShingles(List<Tag> page) {
 		
 		this.shingle_set= new ArrayList<Shingle>(); 
 		for(int i=0; i<page.size()-10; i++) {

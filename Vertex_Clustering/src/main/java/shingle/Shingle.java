@@ -2,9 +2,11 @@ package shingle;
 
 import java.util.List;
 
+import tag.Tag;
+
 public class Shingle {
 
-	private List<String> tag_sequence;
+	private List<Tag> tag_sequence;
 	private int length;
 
 
@@ -12,18 +14,18 @@ public class Shingle {
 		this.length=length;
 	}
 
-	public List<String> getTag_sequence() {
+	public List<Tag> getTag_sequence() {
 		return this.tag_sequence;
 	}
 
-	public void setTag_sequence(List<String> tag_sequence) {
+	public void setTag_sequence(List<Tag> tag_sequence) {
 		this.tag_sequence = tag_sequence;
 	}
 
 	public String concatTagSequence() {
 		String stringTag="";
-		for(String tag : this.tag_sequence) {
-			stringTag= stringTag.concat(tag);
+		for(Tag tag : this.tag_sequence) {
+			stringTag= stringTag.concat(tag.getTag());
 		}
 		return stringTag;
 	}
@@ -39,8 +41,8 @@ public class Shingle {
 	@Override
 	public String toString() {
 		String value = "";
-		for(String i : this.tag_sequence) {
-			value =  value.concat(i);
+		for(Tag i : this.tag_sequence) {
+			value =  value.concat(i.getTag());
 		}
 		return value;
 	}
