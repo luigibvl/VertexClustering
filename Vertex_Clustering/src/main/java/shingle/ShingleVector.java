@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.google.common.hash.HashFunction;
+
 import hashing.FactoryHashFunctions;
 import hashing.HashFunctionInterface;
 
@@ -20,11 +22,8 @@ public class ShingleVector {
 		this.masked_vectors.put("6/8", new ArrayList<MaskedShingleVector>());
 		this.masked_vectors.put("7/8", new ArrayList<MaskedShingleVector>());
 		this.masked_vectors.put("8/8", new ArrayList<MaskedShingleVector>());
-<<<<<<< HEAD
-=======
 
 		//createMasks();
->>>>>>> branch 'elebart' of https://github.com/luigibvl/VertexClustering
 	}
 
 	public String[] getVector() {
@@ -57,13 +56,9 @@ public class ShingleVector {
 		lisHashFunctions=factory.getFactory();
 
 		for(int i=0;i<lisHashFunctions.size();i++) {
-<<<<<<< HEAD
 			
 			HashFunctionInterface hashFunction=lisHashFunctions.get(i);
-=======
 
-			HashFunction hashFunction=lisHashFunctions.get(i);
->>>>>>> branch 'elebart' of https://github.com/luigibvl/VertexClustering
 			int max = Integer.MAX_VALUE;
 			String min = Integer.toString(max);
 
