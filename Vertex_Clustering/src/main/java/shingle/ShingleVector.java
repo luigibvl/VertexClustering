@@ -6,11 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.google.common.hash.HashFunction;
-
-import hashing.FactoryHashFunctions;
-import hashing.HashFunctionInterface;
-
 
 public class ShingleVector {
 
@@ -41,6 +36,7 @@ public class ShingleVector {
 		this.masked_vectors = masked_vectors;
 	}
 
+	//prende tutti i masked dello shingle vector
 	public List<MaskedShingleVector> getAllMV(){
 		return this.masked_vectors.values().stream()
 		        .flatMap(List::stream)

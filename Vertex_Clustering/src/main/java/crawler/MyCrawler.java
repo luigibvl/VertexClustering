@@ -1,25 +1,18 @@
 package crawler;
 
-import java.io.BufferedReader;
+
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import clustering.PageClustering;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
-import shingle.ShingleVector;
-import tag.Pagina;
+
 
 public class MyCrawler extends WebCrawler {
 
@@ -43,9 +36,9 @@ public class MyCrawler extends WebCrawler {
 	@Override
 	public boolean shouldVisit(Page referringPage, WebURL url) {
 		String href = url.getURL().toLowerCase();
-		return false;
-//		return !FILTERS.matcher(href).matches()
-//				&& href.startsWith("https://www.ics.uci.edu/");
+		//return false;
+		return !FILTERS.matcher(href).matches()
+				&& href.startsWith("https://www.ics.uci.edu/");
 	}
 
 	/**
@@ -56,15 +49,12 @@ public class MyCrawler extends WebCrawler {
 	public void visit(Page page) {
 		String url = page.getWebURL().getURL();
 		System.out.println("URL: " + url);
-
 		if (page.getParseData() instanceof HtmlParseData) {
-			HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
-
 			try {
 				Document document = Jsoup.connect(url).get();
 				PrintWriter out = new PrintWriter(
 						new FileWriter("/Users/alessandrocimmino/Desktop/test/"+url.replaceAll("/|:", "_")+".txt",true));
-				Controller c = new Controller(document);
+				ParserHtml c = new ParserHtml(document);
 				out.print(c.parseHtml());
 				out.close();
 				

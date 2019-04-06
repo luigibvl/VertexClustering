@@ -33,6 +33,7 @@ public class MaskedShingleVector {
 		this.count -= i;
 	}
 
+	//Ritorna true se il masked su cui viene invocato il metodo copre 'vector'
 	public boolean cover(ShingleVector vector){
 		for (int i = 0; i<this.masked_vector.length; i++){
 			if (!this.masked_vector[i].equals(vector.getVector()[i]) && !this.masked_vector[i].equals("*"))
@@ -41,6 +42,7 @@ public class MaskedShingleVector {
 		return true;
 	}
 
+	//Per capire se il Masked Vector è un 8/8
 	public boolean containsWildCard(){
 		for (int i=0; i<this.masked_vector.length; i++){
 			if(this.masked_vector[i].equals("*"))

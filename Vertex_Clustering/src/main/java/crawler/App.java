@@ -4,20 +4,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
 import clustering.Cluster;
 import clustering.PageClustering;
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
-import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
-import shingle.Shingle;
-import shingle.ShingleVector;
-import tag.Tag;
 import tag.Pagina;
 
 
@@ -31,7 +25,6 @@ public class App{
 		
 		String crawlStorageFolder = "/Users/alessandrocimmino/Desktop/test";
 		int numberOfCrawlers = 7;
-
 		CrawlConfig config = new CrawlConfig();
 		config.setCrawlStorageFolder(crawlStorageFolder);
 
@@ -57,28 +50,33 @@ public class App{
 		//take parsed_html and start clustering
 		BufferedReader br = null;
 	    FileReader fr = null;
-
 	    try {
 	      fr = new FileReader("/Users/alessandrocimmino/Desktop/test/https___www.rottentomatoes.com_.txt");
 	      br = new BufferedReader(fr);
-
 	      String sCurrentLine;
 	      String tagSequence="";
 	      while ((sCurrentLine = br.readLine()) != null) {
 	        tagSequence = tagSequence.concat(sCurrentLine);
 	      }
 	      
-	      
+	      //Creaazione della Pagina PER ADESSO è SOLO UNA
 	      Pagina page = new Pagina(tagSequence);
+	      
+	      //Inizializzazione del clustering
 	      PageClustering clustering = new PageClustering();
+	      
+	      //Lista delle pagina da clusterizzare
 	      List<Pagina> pages = new ArrayList<>();
 	      pages.add(page);
+	      
+	      //Inzio clustering
 	      clustering.algorithm(pages);
-	      System.out.println("Stampa cluster");
+	      System.out.println("Fine clustering");
+	      
+	      //Stampa dei cluster ottenuti
 	      List<Cluster> clusters = clustering.getClusters();
 	      System.out.println(clusters.size());
 	      for(Cluster c: clusters){
-	    	  //System.out.println("Stampa cluster");
 	    	  System.out.println(c.toString());
 	      }
 	      
