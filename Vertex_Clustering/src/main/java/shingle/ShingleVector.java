@@ -90,11 +90,11 @@ public class ShingleVector {
 
 	@Override
 	public String toString() {
-		String value = "";
+		String value = "[";
 		for(String i : this.vector) {
-			value =  value.concat(i);
+			value =  value.concat(i) + " ";
 		}
-		return value;
+		return value + "]";
 	}
 
 	public void copy(MaskedShingleVector mv) {

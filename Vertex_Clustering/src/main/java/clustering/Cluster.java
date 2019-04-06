@@ -37,7 +37,7 @@ public class Cluster {
 	
 	@Override
 	public String toString(){
-		String result = this.shingle_signature.toString() + " : ";
+		String result = "Signature Cluster:"+ this.shingle_signature.toString() + " Pages' shingle vectors: ";
 		for(Pagina p : this.pages){
 			result += p.toString() + ", " ;
 		}
