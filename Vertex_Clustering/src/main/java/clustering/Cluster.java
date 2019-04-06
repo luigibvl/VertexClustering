@@ -1,5 +1,6 @@
 package clustering;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import shingle.MaskedShingleVector;
@@ -10,7 +11,9 @@ public class Cluster {
 	private MaskedShingleVector shingle_signature;
 	private List<Pagina> pages;
 	
-	public Cluster(){}
+	public Cluster(){
+		this.pages = new ArrayList<>();
+	}
 
 	public MaskedShingleVector getSignature() {
 		return shingle_signature;

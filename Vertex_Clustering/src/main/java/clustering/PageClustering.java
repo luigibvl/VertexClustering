@@ -67,7 +67,7 @@ public class PageClustering {
 				}
 			}
 		}
-		table.deleteAllUnderTreshold(20);
+		table.deleteAllUnderTreshold(1);
 
 		/*Third pass*/
 
