@@ -65,10 +65,15 @@ public class MaskedShingleVector {
 	public boolean equals(Object o){
 		MaskedShingleVector mv = (MaskedShingleVector)o;
 		for(int i=0;i<mv.masked_vector.length;i++){
-			if(this.masked_vector[i]!=mv.masked_vector[i])
+			if(!this.masked_vector[i].equals(mv.getMasked_vector()[i]))
 				return false;
 		}
 		return true;
+	}
+	
+	@Override
+	public int hashCode(){
+		return Integer.parseInt(this.masked_vector.toString());
 	}
 }
 

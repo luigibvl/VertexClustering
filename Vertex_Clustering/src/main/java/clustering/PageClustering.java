@@ -18,8 +18,9 @@ public class PageClustering {
 	public void algorithm(List<Pagina> sample_pages){
 
 		/**************************FIRST PASS************************/
+		
 		HashTable table = new HashTable();
-
+		System.out.println(sample_pages.size());
 		for (Pagina p : sample_pages){
 
 			//creazione vettore v
@@ -31,16 +32,20 @@ public class PageClustering {
 			v.createMasks();
 
 			for (MaskedShingleVector mv : v.getAllMV()){
-				if (table.contains(mv))
-					mv.incrementCount();
+				if (table.contains(mv)!=null){
+					MaskedShingleVector insider = table.contains(mv);
+					insider.incrementCount();
+				}
 				else{
 					mv.setCount(1);
-					table.insert(mv);
+					table.getTable_mvectors().add(mv);
 				}
 			}
 
-			System.out.println(v.getAllMV().toString());
+			
 		}
+		
+		System.out.println(table);
 		/*************************END FIRST PASS********************/
 		
 		
@@ -71,7 +76,7 @@ public class PageClustering {
 		}
 		
 		//Eliminiamo i Masked con un count al di sotto di una soglia predefinita
-		table.deleteAllUnderTreshold(10);
+		table.deleteAllUnderTreshold(20);
 		
 		/*************************END SECOND PASS*************************/
 		

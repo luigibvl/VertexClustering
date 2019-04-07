@@ -56,8 +56,10 @@ public class App{
 
 		//Lista delle pagina da clusterizzare
 		List<Pagina> pages = new ArrayList<>();
+		//		readContent("/test/pages/14.html", pages);
+		//		readContent("/test/pages/6.html", pages);
 
-		try (Stream<Path> paths = Files.walk(Paths.get("/test/pages"))) {
+		try (Stream<Path> paths = Files.walk(Paths.get("/test/pages/test"))) {
 			paths
 			.filter(Files::isRegularFile)
 			.filter(p -> p.toString().endsWith(".html"))
@@ -71,12 +73,12 @@ public class App{
 					}
 				}
 			});
-			
+
 			//Inizializzazione del clustering
 			PageClustering clustering = new PageClustering();
 
-			System.out.println("Numero di pagine: " + pages.size());
-			
+			System.out.println(pages.size());
+
 			//Inzio clustering
 			clustering.algorithm(pages);
 			System.out.println("Fine clustering");
@@ -103,11 +105,9 @@ public class App{
 				tagSequence = tagSequence.concat(sCurrentLine);
 			}
 
-			
-			//Creaazione della Pagina PER ADESSO è SOLO UNA
 			Pagina page = new Pagina(tagSequence);
 			pages.add(page);
-			
+
 			if (br != null)
 				br.close();
 			if (fr != null)
