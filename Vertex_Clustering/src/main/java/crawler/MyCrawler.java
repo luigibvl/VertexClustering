@@ -53,7 +53,7 @@ public class MyCrawler extends WebCrawler {
 			try {
 				Document document = Jsoup.connect(url).get();
 				PrintWriter out = new PrintWriter(
-						new FileWriter("/Users/alessandrocimmino/Desktop/test/"+url.replaceAll("/|:", "_")+".txt",true));
+						new FileWriter("/test/"+url.replaceAll("/|:", "_")+".txt",true));
 				ParserHtml c = new ParserHtml(document);
 				out.print(c.parseHtml());
 				out.close();

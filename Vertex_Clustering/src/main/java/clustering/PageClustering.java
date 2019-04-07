@@ -71,7 +71,7 @@ public class PageClustering {
 		}
 		
 		//Eliminiamo i Masked con un count al di sotto di una soglia predefinita
-		table.deleteAllUnderTreshold(1);
+		table.deleteAllUnderTreshold(10);
 		
 		/*************************END SECOND PASS*************************/
 		
