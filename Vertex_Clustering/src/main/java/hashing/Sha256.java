@@ -6,23 +6,25 @@ import java.security.NoSuchAlgorithmException;
 import org.bouncycastle.util.encoders.Hex;
 
 public class Sha256 implements HashFunctionInterface{
-	
+
 	public Sha256() {}
-	
+
 	@Override
-	public String getHash(String stringa){
+	public String getHash(String[] stringa){
 		MessageDigest messageDigest;
 		try {
 			messageDigest = MessageDigest.getInstance("SHA-256");
-			messageDigest.update(stringa.getBytes());
-			byte[] messageDigestMD5 = messageDigest.digest();
-			StringBuffer stringBuffer = new StringBuffer();
-
-			for (byte bytes : messageDigestMD5) {
-				stringBuffer.append(String.format("%02x", bytes & 0xff));
+			int[] result = new int[]{0,0,0,0,0,0,0,0,0,0};
+			for(int i=0; i<10; i++){
+				messageDigest.update(stringa[i].getBytes());
+				byte[] messageDigestSha = messageDigest.digest();
+				result[i] = messageDigestSha.hashCode();
 			}
-			
-			return Hex.toHexString(messageDigestMD5).substring(0, 8);
+			int sum=0;
+			for(int j=0; j<10; j++){
+				sum += result[j];
+			}
+			return Integer.toHexString(sum).substring(10,18);
 
 		} catch (NoSuchAlgorithmException exception) {
 			// TODO Auto-generated catch block

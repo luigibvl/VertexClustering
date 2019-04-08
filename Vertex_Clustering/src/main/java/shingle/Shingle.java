@@ -22,10 +22,16 @@ public class Shingle {
 		this.tag_sequence = tag_sequence;
 	}
 
-	public String concatTagSequence() {
-		String stringTag="";
+	public String[] concatTagSequence() {
+		String[] stringTag = new String[10];
+		for (int i = 0; i<10; i++){
+			stringTag[i] = "";
+		}
+		int i = 0;
 		for(Tag tag : this.tag_sequence) {
-			stringTag= stringTag.concat(tag.getTag());
+			if(stringTag[i].length() >= Integer.MAX_VALUE -10)
+				i++;			
+			stringTag[i]= stringTag[i].concat(tag.getTag());
 		}
 		return stringTag;
 	}

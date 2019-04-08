@@ -1,25 +1,31 @@
 package hashing;
 
 public class Fnv implements HashFunctionInterface{
-	
-	
+
+
 	private static final int FNV_32_PRIME = 0x01000193;
 
-	
+
 	public Fnv() {}
 
 	@Override
-	public String getHash(String stringa){
+	public String getHash(String[] stringa){
 
-		int hval = 0x811c9dc5;
-		byte[] bytes = stringa.getBytes();
-		int size = bytes.length;
+		int[] hval = new int[] {0x811c9dc5,0x811c9dc5,0x811c9dc5,0x811c9dc5,0x811c9dc5,0x811c9dc5,0x811c9dc5,0x811c9dc5,0x811c9dc5,0x811c9dc5};
+		for(int i=0; i<10; i++){
+			byte[] bytes = stringa[i].getBytes();
+			int size = bytes.length;
 
-		for (int i = 0; i < size; i++){
-			hval *= FNV_32_PRIME;
-			hval ^= bytes[i];
+			for (int j = 0; j < size; j++){
+				hval[i] *= FNV_32_PRIME;
+				hval[i] ^= bytes[j];
+			}
 		}
-		return Integer.toHexString(hval);
+		int sum=0;
+		for(int i=0; i<10; i++){
+			sum += hval[i];
+		}
+		return Integer.toHexString(sum);
 	}
 
 }

@@ -71,7 +71,7 @@ public class Pagina {
 
 			//...la applichiamo agli shingle della pagina e prendiamo il minimo
 			for(Shingle s : getShingle_set()) {
-				String input = s.concatTagSequence();
+				String[] input = s.concatTagSequence();
 				String output = hashFunction.getHash(input);
 				if(output.compareTo(min)<0)
 					min=output;
