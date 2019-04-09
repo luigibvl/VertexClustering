@@ -32,3 +32,4 @@ public class Sha256 implements HashFunctionInterface{
 	}
 
 }
+

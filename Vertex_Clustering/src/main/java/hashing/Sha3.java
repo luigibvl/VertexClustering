@@ -17,3 +17,4 @@ public class Sha3 implements HashFunctionInterface{
 	}
 
 }
+

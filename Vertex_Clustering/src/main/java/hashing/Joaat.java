@@ -32,3 +32,4 @@ public class Joaat implements HashFunctionInterface{
 	}
 
 }
+

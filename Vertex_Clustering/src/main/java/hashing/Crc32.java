@@ -23,3 +23,4 @@ public class Crc32 implements HashFunctionInterface{
 	}
 
 }
+

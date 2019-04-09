@@ -1,19 +1,23 @@
 package crawler;
 
 import java.io.BufferedReader;
-
+import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+
 import clustering.Cluster;
 import clustering.PageClustering;
+import edu.uci.ics.crawler4j.crawler.CrawlConfig;
+import edu.uci.ics.crawler4j.crawler.CrawlController;
+import edu.uci.ics.crawler4j.fetcher.PageFetcher;
+import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
+import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 import tag.Pagina;
 
 
@@ -55,10 +59,10 @@ public class App{
 		//		readContent("/test/pages/14.html", pages);
 		//		readContent("/test/pages/6.html", pages);
 
-		try (Stream<Path> paths = Files.walk(Paths.get("/Users/alessandrocimmino/Desktop/dataset/colnect/"))) {
+		try (Stream<Path> paths = Files.walk(Paths.get("/test/pages/ebay"))) {
 			paths
 			.filter(Files::isRegularFile)
-			.filter(p -> p.toString().endsWith(".html"))
+			.filter(p -> p.toString().endsWith(".html") || p.toString().endsWith(".txt"))
 			.forEach(filePath -> {
 				if (Files.isRegularFile(filePath)) {
 					try {
@@ -73,27 +77,22 @@ public class App{
 			//Inizializzazione del clustering
 			PageClustering clustering = new PageClustering();
 
-			System.out.println(pages.size());
+			//System.out.println(pages.size());
 
 			//Inzio clustering
+			System.out.println("Inizio clustering");
 			clustering.algorithm(pages);
 			System.out.println("Fine clustering");
 
-			
-			FileWriter fileWriter = new FileWriter("/Users/alessandrocimmino/Desktop/dataset/result.txt");
-		    PrintWriter printWriter = new PrintWriter(fileWriter);
-		    printWriter.print("--------TEST SU 10000 PAGINE CON THRESHOLD PARI A 20 SU WWW.COLNECT.COM--------");
-		    
-		    
 			//Stampa dei cluster ottenuti
 			List<Cluster> clusters = clustering.getClusters();
 			System.out.println(clusters.size());
 			for(Cluster c: clusters){
 				System.out.println(c.toString());
-				printWriter.println("\n" + clusters.size());
-				printWriter.print(c.toString());
+				System.out.println(c.getPages().size());
 			}
-			printWriter.close();
+			
+			
 		}
 	}
 
@@ -129,3 +128,4 @@ public class App{
 	}
 
 }
+

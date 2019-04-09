@@ -47,3 +47,4 @@ public class Shingle {
 		return value;
 	}
 }
+

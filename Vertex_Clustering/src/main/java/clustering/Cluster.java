@@ -10,7 +10,7 @@ public class Cluster {
 
 	private MaskedShingleVector shingle_signature;
 	private List<Pagina> pages;
-	
+
 	public Cluster(){
 		this.pages = new ArrayList<>();
 	}
@@ -30,11 +30,11 @@ public class Cluster {
 	public void setPages(List<Pagina> pages) {
 		this.pages = pages;
 	}
-	
+
 	public void addPage(Pagina p){
 		this.pages.add(p);
 	}
-	
+
 	@Override
 	public String toString(){
 		String result = "\nSignature Cluster:"+ this.shingle_signature.toString() + " Size: " + this.pages.size() +" Pages' shingle vectors: ";
@@ -43,6 +43,6 @@ public class Cluster {
 		}
 		return result;
 	}
-	
-	
+
+
 }
