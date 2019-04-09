@@ -41,11 +41,7 @@ public class PageClustering {
 					table.getTable_mvectors().add(mv);
 				}
 			}
-
-			
 		}
-		
-		System.out.println(table);
 		/*************************END FIRST PASS********************/
 		
 		
@@ -56,21 +52,27 @@ public class PageClustering {
 		List<MaskedShingleVector> all88MV = table.getAll88MaskedVector();
 		table.sort_by_count_decreasing();
 		int count_for_decrement=0;
+		MaskedShingleVector v1_max = new MaskedShingleVector();
 		boolean mv_with_max_count = false;
 		
 		//per ogni 8/8 troviamo il masked che lo copre con il maggiore count
 		//e diminuaiamo di un valore pari al suo count il count degli altri
 		//Masked che coprono l'8/8
 		for (MaskedShingleVector mv : all88MV){
-			ShingleVector v1 = new ShingleVector();
-			v1.copy(mv);
-			if(mv.cover(v1) ){
-				if(!mv_with_max_count){
-					count_for_decrement = mv.getCount();
-					mv_with_max_count = true;
-				}
-				else{
-					mv.decrementCount(count_for_decrement);
+			ShingleVector v = new ShingleVector();
+			v.copy(mv);
+			mv_with_max_count = false;
+			for(MaskedShingleVector v1 : table.getTable_mvectors()){
+				if(v1.cover(v) ){
+					if(!mv_with_max_count){
+						count_for_decrement = mv.getCount();
+						mv_with_max_count = true;
+						v1_max = v1;
+					}
+					else{
+						if(!v1.equals(v1_max))
+							v1.decrementCount(count_for_decrement);
+					}
 				}
 			}
 		}
@@ -90,14 +92,17 @@ public class PageClustering {
 			clusters.add(c);
 		}
 		
+		boolean max_cover = false;
 		//Per ogni pagina controlliamo quale masked copre il suo shingle vector
 		//per poi aggiungere la pagina al cluster associato al masked
 		for (Pagina p : sample_pages){
 			table.sort_by_count_decreasing();
+			max_cover = false;
 			for(MaskedShingleVector mv : table.getTable_mvectors()){
-				if(mv.cover(p.getShingleVector())){
+				if(mv.cover(p.getShingleVector()) && !max_cover){
 					Cluster c = getClusterFromSignature(mv);
 					c.addPage(p);
+					max_cover = true;
 				}
 			}
 		}

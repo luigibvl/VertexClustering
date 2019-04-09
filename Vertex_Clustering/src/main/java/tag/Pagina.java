@@ -14,7 +14,7 @@ public class Pagina {
 	private ShingleVector shinglevector;
 	private String strutturaPagina;
 	private List<Shingle> shingle_set;
-
+	
 	public Pagina(String parsedHtml) {
 		this.strutturaPagina=parsedHtml;
 	}
@@ -29,7 +29,7 @@ public class Pagina {
 		}
 		return page;
 	}
-
+	
 	//Crea gli shingles di lunghezza predefinita 10 a partire dalla lista di Tag
 	//generando quindi lo shingle set che definisce la pagina
 	public void createShingles(List<Tag> page) {
@@ -53,8 +53,8 @@ public class Pagina {
 	public void setShingle_set(List<Shingle> shingle_set) {
 		this.shingle_set = shingle_set;
 	}
-
-
+	
+	
 	//Crea lo shingle vector che identifica la pagina utilizzando 8 funzioni hash diverse
 	public void createShingleVector() {
 		this.shinglevector = new ShingleVector();
@@ -89,13 +89,11 @@ public class Pagina {
 
 		this.shinglevector.setVector(vector);
 	}
-
+	
 	@Override
 	public String toString(){
-		if(shinglevector!=null)
-			return shinglevector.toString();
-		else return "shinglevector null";
+		return shinglevector.toString();
 	}
-
+	
 }
 
